@@ -9,38 +9,38 @@ const sections = [
     label: 'Hero (Topo do site)',
     desc: 'Altere o título principal, subtítulo, imagem e chamada para ação da primeira tela.',
     path: '/admin/hero',
-    color: 'bg-blue-50 text-blue-700',
+    color: 'bg-bronze/10 text-bronze',
   },
   {
     icon: User,
     label: 'Sobre Mim',
     desc: 'Edite o texto da sua apresentação pessoal, foto e citação em destaque.',
     path: '/admin/sobre',
-    color: 'bg-purple-50 text-purple-700',
+    color: 'bg-bronze/10 text-bronze',
   },
   {
     icon: LinkIcon,
     label: 'Links e Contato',
     desc: 'Atualize seu WhatsApp, Instagram, LinkedIn, e-mail e localização.',
     path: '/admin/links',
-    color: 'bg-green-50 text-green-700',
+    color: 'bg-bronze/10 text-bronze',
   },
   {
     icon: FileText,
     label: 'Artigos do Blog',
     desc: 'Adicione, edite ou remova os artigos que aparecem na seção de blog.',
     path: '/admin/blog',
-    color: 'bg-slate-50 text-slate-700',
+    color: 'bg-bronze/10 text-bronze',
   },
   {
     icon: HelpCircle,
     label: 'Perguntas Frequentes',
     desc: 'Gerencie as perguntas e respostas que aparecem na seção de FAQ.',
     path: '/admin/faq',
-    color: 'bg-slate-50 text-slate-700',
+    color: 'bg-bronze/10 text-bronze',
   },
 ];
-
+ 
 export default function AdminDashboard() {
   return (
     <AdminLayout>
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
         <h1 className="text-xl font-bold text-gray-900">Bem-vindo ao Painel!</h1>
         <p className="text-gray-500 text-sm mt-1">Escolha uma seção abaixo para editar o conteúdo do seu site.</p>
       </div>
-
+ 
       <div className="p-8">
         {/* Tip card */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-8 flex items-start gap-3">
@@ -60,7 +60,7 @@ export default function AdminDashboard() {
             </p>
           </div>
         </div>
-
+ 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sections.map((s) => (
             <Link
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
               </div>
               <h3 className="text-gray-900 font-semibold text-sm mb-1">{s.label}</h3>
               <p className="text-gray-500 text-xs leading-relaxed mb-4">{s.desc}</p>
-              <span className="flex items-center gap-1 text-slate-700 text-xs font-medium group-hover:gap-2 transition-all">
+              <span className="flex items-center gap-1 text-bronze text-xs font-semibold group-hover:text-bronze-dark group-hover:gap-2 transition-all">
                 Editar <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </Link>

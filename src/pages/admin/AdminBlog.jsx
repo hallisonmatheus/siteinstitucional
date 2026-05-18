@@ -37,7 +37,7 @@ function PostModal({ post, onClose, onSave }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Título *</label>
             <input
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder="Ex: Compliance Trabalhista: o que sua empresa precisa saber"
@@ -46,7 +46,7 @@ function PostModal({ post, onClose, onSave }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Categoria</label>
             <input
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50"
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
               placeholder="Ex: Compliance Trabalhista, Direito do Trabalho..."
@@ -55,7 +55,7 @@ function PostModal({ post, onClose, onSave }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Resumo (aparece no card)</label>
             <textarea
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none"
               rows={2}
               value={form.excerpt}
               onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
@@ -65,7 +65,7 @@ function PostModal({ post, onClose, onSave }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Conteúdo completo *</label>
             <textarea
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none leading-relaxed"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none leading-relaxed"
               rows={10}
               value={form.content}
               onChange={(e) => setForm({ ...form, content: e.target.value })}
@@ -102,7 +102,7 @@ function PostModal({ post, onClose, onSave }) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-5 py-2 bg-amber-700 text-white text-sm font-medium rounded-lg hover:bg-amber-800 transition-colors disabled:opacity-60"
+            className="flex items-center gap-2 px-5 py-2 bg-[#1a2b4a] text-white text-sm font-medium rounded-lg hover:bg-[#253965] transition-colors disabled:opacity-60"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
             Salvar Artigo
@@ -194,7 +194,7 @@ export default function AdminBlog() {
         </div>
         <button
           onClick={() => setModal('new')}
-          className="flex items-center gap-2 px-5 py-2.5 bg-amber-700 text-white text-sm font-medium rounded-lg hover:bg-amber-800 transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-[#1a2b4a] text-white text-sm font-medium rounded-lg hover:bg-[#253965] transition-colors"
         >
           <Plus className="w-4 h-4" />
           Novo Artigo
@@ -217,7 +217,7 @@ export default function AdminBlog() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     {post.category && (
-                      <span className="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-medium">
+                      <span className="text-[10px] bg-bronze/10 text-bronze px-2 py-0.5 rounded-full font-medium">
                         {post.category}
                       </span>
                     )}
@@ -236,13 +236,13 @@ export default function AdminBlog() {
                   <button
                     onClick={() => togglePublished(post)}
                     title={post.published ? 'Ocultar' : 'Publicar'}
-                    className="p-2 text-gray-400 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-colors"
+                    className="p-2 text-gray-400 hover:text-bronze hover:bg-bronze/10 rounded-lg transition-colors"
                   >
                     {post.published ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                   </button>
                   <button
                     onClick={() => setModal(post)}
-                    className="p-2 text-gray-400 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-colors"
+                    className="p-2 text-gray-400 hover:text-bronze hover:bg-bronze/10 rounded-lg transition-colors"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>

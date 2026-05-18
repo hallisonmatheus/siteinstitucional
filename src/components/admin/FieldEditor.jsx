@@ -33,7 +33,7 @@ export function EditableText({ label, value, onSave, multiline = false, hint = '
         <div className="space-y-2">
           {multiline ? (
             <textarea
-              className="w-full border border-amber-300 rounded-lg px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none leading-relaxed"
+              className="w-full border border-bronze/30 rounded-lg px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none leading-relaxed"
               rows={5}
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
@@ -41,7 +41,7 @@ export function EditableText({ label, value, onSave, multiline = false, hint = '
             />
           ) : (
             <input
-              className="w-full border border-amber-300 rounded-lg px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full border border-bronze/30 rounded-lg px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-bronze/50"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               autoFocus
@@ -51,7 +51,7 @@ export function EditableText({ label, value, onSave, multiline = false, hint = '
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex items-center gap-1.5 px-4 py-2 bg-amber-700 text-white text-xs font-medium rounded-lg hover:bg-amber-800 transition-colors disabled:opacity-60"
+              className="flex items-center gap-1.5 px-4 py-2 bg-[#1a2b4a] text-white text-xs font-medium rounded-lg hover:bg-[#253965] transition-colors disabled:opacity-60"
             >
               {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
               Salvar
@@ -67,11 +67,11 @@ export function EditableText({ label, value, onSave, multiline = false, hint = '
         </div>
       ) : (
         <div
-          className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-transparent hover:border-amber-200 hover:bg-amber-50/40 transition-colors cursor-pointer group"
+          className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-transparent hover:border-bronze/30 hover:bg-[#1a2b4a]/5 transition-colors cursor-pointer group"
           onClick={() => { setDraft(value); setEditing(true); }}
         >
           <p className="flex-1 text-sm text-gray-800 leading-relaxed whitespace-pre-wrap">{value || <span className="text-gray-400 italic">Clique para editar...</span>}</p>
-          <Pencil className="w-4 h-4 text-gray-400 group-hover:text-amber-600 flex-shrink-0 mt-0.5 transition-colors" />
+          <Pencil className="w-4 h-4 text-gray-400 group-hover:text-bronze flex-shrink-0 mt-0.5 transition-colors" />
         </div>
       )}
     </div>
@@ -128,7 +128,7 @@ export function ImageEditor({ label, value, onSave, hint = '' }) {
         <button
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
-          className="flex items-center gap-2 px-4 py-2.5 border-2 border-dashed border-amber-300 rounded-lg text-sm text-amber-700 hover:bg-amber-50 transition-colors w-full justify-center disabled:opacity-60"
+          className="flex items-center gap-2 px-4 py-2.5 border-2 border-dashed border-bronze/30 rounded-lg text-sm text-bronze hover:bg-bronze/5 transition-colors w-full justify-center disabled:opacity-60"
         >
           {uploading ? (
             <><Loader2 className="w-4 h-4 animate-spin" /> Enviando imagem...</>
@@ -148,8 +148,8 @@ export function SectionCard({ title, description, icon: Icon, children }) {
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
         {Icon && (
-          <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
-            <Icon className="w-4 h-4 text-amber-700" />
+          <div className="w-8 h-8 bg-bronze/10 rounded-lg flex items-center justify-center">
+            <Icon className="w-4 h-4 text-bronze" />
           </div>
         )}
         <div>

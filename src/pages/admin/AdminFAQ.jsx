@@ -36,7 +36,7 @@ function FAQModal({ faq, onClose, onSave, nextOrder }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Pergunta *</label>
             <input
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50"
               value={form.question}
               onChange={(e) => setForm({ ...form, question: e.target.value })}
               placeholder="Ex: Preciso de advogado mesmo sem ter processo na justiça?"
@@ -45,7 +45,7 @@ function FAQModal({ faq, onClose, onSave, nextOrder }) {
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Resposta *</label>
             <textarea
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none leading-relaxed"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none leading-relaxed"
               rows={6}
               value={form.answer}
               onChange={(e) => setForm({ ...form, answer: e.target.value })}
@@ -57,7 +57,7 @@ function FAQModal({ faq, onClose, onSave, nextOrder }) {
             <input
               type="number"
               min={1}
-              className="w-24 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-24 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50"
               value={form.order}
               onChange={(e) => setForm({ ...form, order: Number(e.target.value) })}
             />
@@ -74,7 +74,7 @@ function FAQModal({ faq, onClose, onSave, nextOrder }) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-5 py-2 bg-amber-700 text-white text-sm font-medium rounded-lg hover:bg-amber-800 transition-colors disabled:opacity-60"
+            className="flex items-center gap-2 px-5 py-2 bg-[#1a2b4a] text-white text-sm font-medium rounded-lg hover:bg-[#253965] transition-colors disabled:opacity-60"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
             Salvar
@@ -156,7 +156,7 @@ export default function AdminFAQ() {
         </div>
         <button
           onClick={() => setModal('new')}
-          className="flex items-center gap-2 px-5 py-2.5 bg-amber-700 text-white text-sm font-medium rounded-lg hover:bg-amber-800 transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-[#1a2b4a] text-white text-sm font-medium rounded-lg hover:bg-[#253965] transition-colors"
         >
           <Plus className="w-4 h-4" />
           Nova Pergunta
@@ -173,8 +173,8 @@ export default function AdminFAQ() {
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <div key={faq.id} className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4">
-                <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-amber-700 text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                <div className="w-8 h-8 bg-bronze/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-bronze text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-gray-900 font-semibold text-sm mb-1">{faq.question}</h3>
@@ -183,7 +183,7 @@ export default function AdminFAQ() {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <button
                     onClick={() => setModal(faq)}
-                    className="p-2 text-gray-400 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-colors"
+                    className="p-2 text-gray-400 hover:text-bronze hover:bg-bronze/10 rounded-lg transition-colors"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>

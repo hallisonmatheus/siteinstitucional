@@ -20,16 +20,16 @@ export default function AdminLayout({ children }) {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col fixed top-0 bottom-0 left-0 z-40">
+      <aside className="w-64 bg-[#1a2b4a] border-r border-[#1a2b4a] flex flex-col fixed top-0 bottom-0 left-0 z-40 shadow-xl">
         {/* Logo */}
-        <div className="p-6 border-b border-gray-100">
+        <div className="p-6 border-b border-[#253965]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-amber-800 rounded flex items-center justify-center">
+            <div className="w-9 h-9 bg-bronze rounded flex items-center justify-center shadow-md">
               <span className="text-white text-sm font-bold">HM</span>
             </div>
             <div>
-              <p className="text-gray-900 text-sm font-semibold">Painel Admin</p>
-              <p className="text-gray-400 text-xs">Hallison Matheus</p>
+              <p className="text-white text-sm font-semibold">Painel Admin</p>
+              <p className="text-slate-300 text-xs">Hallison Matheus</p>
             </div>
           </div>
         </div>
@@ -44,25 +44,25 @@ export default function AdminLayout({ children }) {
                 to={item.path}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                   active
-                    ? 'bg-amber-50 text-amber-800 font-medium'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-[#253965] text-white font-medium'
+                    : 'text-slate-200 hover:bg-[#253965]/40 hover:text-white'
                 }`}
               >
-                <item.icon className={`w-4 h-4 flex-shrink-0 ${active ? 'text-amber-700' : 'text-gray-400'}`} />
+                <item.icon className={`w-4 h-4 flex-shrink-0 ${active ? 'text-bronze-light' : 'text-slate-300'}`} />
                 {item.label}
-                {active && <ChevronRight className="w-3.5 h-3.5 ml-auto text-amber-600" />}
+                {active && <ChevronRight className="w-3.5 h-3.5 ml-auto text-bronze-light" />}
               </Link>
             );
           })}
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-100">
+        <div className="p-4 border-t border-[#253965]">
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-colors"
+            className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-[#253965]/40 hover:text-white transition-colors"
           >
             <ExternalLink className="w-4 h-4" />
             Ver site ao vivo
