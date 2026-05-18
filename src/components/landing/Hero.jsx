@@ -150,7 +150,7 @@ export default function Hero({ config = {} }) {
           font-family: 'Cormorant Garamond', serif;
           font-weight: 300;
           font-size: clamp(38px, 4.5vw, 62px);
-          line-height: 0.92;
+          line-height: 1.12;
           color: #111828;
           letter-spacing: -0.02em;
           margin-bottom: 0;
@@ -468,6 +468,7 @@ export default function Hero({ config = {} }) {
         }
 
         @media (max-width: 991px) {
+          .hm-hero { height: auto !important; min-height: 100vh !important; }
           .hm-inner { grid-template-columns: 1fr !important; min-height: auto !important; }
           .hm-right { height: 480px !important; }
           .hm-left { padding: 60px 32px 40px !important; border-right: none !important; border-bottom: 1px solid rgba(15,30,60,0.10) !important; }
@@ -484,6 +485,7 @@ export default function Hero({ config = {} }) {
           }
           .hm-heading {
             font-size: 38px !important;
+            line-height: 1.15 !important;
           }
           .hm-actions {
             flex-direction: column !important;

@@ -26,13 +26,13 @@ export default function Navbar({ config = {} }) {
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 900,
         padding: scrolled ? '14px 0' : '22px 0',
-        background: scrolled ? 'rgba(236,238,241,0.96)' : 'rgba(236,238,241,0)',
-        backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
-        borderBottom: scrolled ? '1px solid rgba(26,43,74,0.06)' : '1px solid rgba(26,43,74,0)',
+        background: (scrolled || mobileOpen) ? 'rgba(236,238,241,0.98)' : 'rgba(236,238,241,0)',
+        backdropFilter: (scrolled || mobileOpen) ? 'blur(12px)' : 'blur(0px)',
+        borderBottom: (scrolled || mobileOpen) ? '1px solid rgba(26,43,74,0.06)' : '1px solid rgba(26,43,74,0)',
         transition: 'all 0.4s cubic-bezier(0.23,1,0.32,1)',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 64px', width: '100%', maxWidth: '100%' }}>
+      <div className="navbar-container">
         {/* Logo matching Hero logo exactly */}
         <a href="#inicio" className="hm-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
           <div className="hm-logo-mark">HM</div>
@@ -126,6 +126,24 @@ export default function Navbar({ config = {} }) {
       </AnimatePresence>
 
       <style>{`
+        .navbar-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 64px;
+          width: 100%;
+          max-width: 100%;
+        }
+        @media (max-width: 1024px) {
+          .navbar-container {
+            padding: 0 32px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .navbar-container {
+            padding: 0 16px !important;
+          }
+        }
         .hm-logo-mark {
           width: 34px;
           height: 34px;
