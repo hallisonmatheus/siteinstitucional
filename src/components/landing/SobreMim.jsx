@@ -80,10 +80,20 @@ export default function SobreMim({ config = {} }) {
 
             <p style={{ fontSize: 14, color: '#475569', lineHeight: 1.8, marginBottom: 40 }}>{bio2}</p>
 
-            <div className="skills-grid-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px 40px', marginTop: 40 }}>
+            <div className="skills-grid-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: 40 }}>
               {allSkills.map((skill, i) => (
-                <div key={i} style={{ fontSize: 12, color: '#64748b', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ width: 15, height: 1, background: '#cbd5e1' }} />
+                <div key={i} style={{ 
+                  fontSize: '11px', 
+                  color: '#1A2B4A', 
+                  border: '1px solid rgba(26,43,74,0.12)', 
+                  padding: '6px 14px', 
+                  background: 'rgba(236,238,241,0.3)', 
+                  borderRadius: '3px',
+                  letterSpacing: '0.04em',
+                  fontWeight: 500,
+                  display: 'inline-block',
+                  whiteSpace: 'nowrap'
+                }}>
                   {skill}
                 </div>
               ))}
@@ -91,12 +101,11 @@ export default function SobreMim({ config = {} }) {
           </motion.div>
         </div>
       </div>
-
+ 
       <style>{`
         @media (max-width: 1024px) {
           .about-grid-layout { grid-template-columns: 1fr !important; gap: 60px !important; }
           .about-grid-layout > div:first-child { height: 450px; }
-          .about-grid-layout .skills-grid-container { grid-template-columns: 1fr !important; }
           .oab-badge { right: auto !important; left: 50% !important; transform: translateX(-50%) !important; bottom: -20px !important; width: 200px !important; }
         }
       `}</style>
