@@ -8,7 +8,7 @@ export default function SobreMim({ config = {} }) {
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
   const title = config.sobre_title || 'Comprometimento, estratégia e proximidade em cada caso.';
-  const bio1 = config.sobre_text1 || 'Sou Hallison Matheus, advogado com atuação em Goiânia e Goiás. Meu trabalho vai muito além de processos: atuo ajudando pessoas e empresas a resolverem problemas com estratégia, segurança jurídica e inteligência, sempre buscando a melhor solução para cada situação.';
+  const bio1 = config.sobre_text1 || 'Sou Hallison Matheus, advogado com atuação em âmbito nacional, especialmente em Goiânia e Região. Meu trabalho vai muito além de processos: atuo ajudando pessoas e empresas a resolverem problemas com estratégia, segurança jurídica e inteligência, sempre buscando a melhor solução para cada situação.';
   const bio2 = config.sobre_text2 || 'Acredito que ter a orientação jurídica certa faz toda a diferença para evitar prejuízos, proteger direitos e tomar decisões com mais segurança. Por isso, trabalho com prevenção jurídica, contratos bem estruturados, compliance e estratégias que evitam conflitos antes que eles aconteçam.';
   const quote = config.sobre_quote || 'O jurídico moderno não serve apenas para resolver processos, mas para trazer segurança, organização e ajudar empresários e cidadãos a tomar decisões mais estratégicas.';
   const image = config.sobre_image || '/portrait2.jpg';

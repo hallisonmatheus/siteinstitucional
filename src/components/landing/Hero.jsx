@@ -3,7 +3,7 @@ import React from 'react';
 export default function Hero({ config = {} }) {
   const waLink = '#'; // Links disabled as requested
   const tag = config.hero_tag || 'Advocacia Estratégica';
-  const subtitle = config.hero_subtitle || 'Atuação personalizada e estratégica com foco em resultados reais e práticos para pessoas e empresas em Goiânia e Goiás.';
+  const subtitle = config.hero_subtitle || 'Atuação personalizada e estratégica com foco em resultados reais e práticos para pessoas e empresas em Goiânia e todo o Brasil.';
   const badge = config.hero_badge || 'Atendimento sigiloso e 100% personalizado';
   const image = config.hero_image || '/portrait1.png';
 
