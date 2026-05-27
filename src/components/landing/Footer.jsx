@@ -41,7 +41,7 @@ export default function Footer({ config = {} }) {
         <div className="footer-grid-layout" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 60, marginBottom: 80 }}>
           {/* Brand */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+            <div className="footer-brand-flex" style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
               <span style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 24, fontWeight: 400, color: '#162d5d', letterSpacing: '0.05em' }}>HM</span>
               <span style={{ width: 1, height: 22, background: '#b8966a', display: 'block' }} />
               <span style={{ fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#162d5d', fontFamily: 'Inter, sans-serif', fontWeight: 600, lineHeight: 1.4 }}>
@@ -49,7 +49,7 @@ export default function Footer({ config = {} }) {
               </span>
             </div>
             <p style={{ fontSize: 14, color: '#475569', lineHeight: 1.6, marginBottom: 32 }}>{slogan}</p>
-            <div style={{ display: 'flex', gap: 16 }}>
+            <div className="footer-social-flex" style={{ display: 'flex', gap: 16 }}>
               {socials.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
                   style={{ width: 36, height: 36, border: '1px solid rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#162d5d', borderRadius: '50%', textDecoration: 'none', transition: 'all 0.3s' }}
@@ -100,7 +100,7 @@ export default function Footer({ config = {} }) {
               { icon: <Mail size={16} />, text: email },
               { icon: <MapPin size={16} />, text: `${cidade} · ${oab}` },
             ].map((c, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: '#475569', marginBottom: 16 }}>
+              <div key={i} className="footer-contact-item" style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: '#475569', marginBottom: 16 }}>
                 <span style={{ color: '#b8966a', flexShrink: 0 }}>{c.icon}</span>
                 {c.text}
               </div>
@@ -109,7 +109,7 @@ export default function Footer({ config = {} }) {
         </div>
 
         {/* Bottom */}
-        <div style={{ paddingTop: 40, borderTop: '1px solid rgba(0,0,0,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+        <div className="footer-bottom" style={{ paddingTop: 40, borderTop: '1px solid rgba(0,0,0,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <p style={{ fontSize: 11, color: '#64748b', letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 600 }}>
             © 2026 Hallison Matheus Advogado — TODOS OS DIREITOS RESERVADOS
           </p>
@@ -134,7 +134,18 @@ export default function Footer({ config = {} }) {
           .footer-container { padding: 0 32px !important; }
         }
         @media (max-width: 768px) {
-          .footer-grid-layout { grid-template-columns: 1fr !important; }
+          .footer-grid-layout { 
+            grid-template-columns: 1fr !important; 
+            text-align: center; 
+          }
+          .footer-brand-flex, .footer-social-flex, .footer-contact-item {
+            justify-content: center !important;
+          }
+          .footer-bottom {
+            flex-direction: column !important;
+            justify-content: center !important;
+            text-align: center !important;
+          }
         }
         @media (max-width: 640px) {
           .footer-container { padding: 0 16px !important; }
