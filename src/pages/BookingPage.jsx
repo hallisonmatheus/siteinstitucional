@@ -107,16 +107,14 @@ export default function BookingPage() {
   // Booking Mutation
   const bookMutation = useMutation({
     mutationFn: async (apptData) => {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('appointments')
         .insert({
           ...apptData,
           status: 'Pendente'
-        })
-        .select()
-        .single();
+        });
       if (error) throw error;
-      return data;
+      return { ...apptData, status: 'Pendente' };
     },
     onSuccess: (data) => {
       setSubmittedAppt(data);
