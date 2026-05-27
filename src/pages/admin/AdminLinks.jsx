@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { PageHeader, SectionCard, EditableText } from '../../components/admin/FieldEditor';
 import { useSiteConfig } from '../../lib/useSiteConfig';
-import { MessageCircle, Instagram, Linkedin, Mail, MapPin, Shield } from 'lucide-react';
+import { MessageCircle, Instagram, Mail, Shield } from 'lucide-react';
 
 export default function AdminLinks() {
   const { config, set } = useSiteConfig();
@@ -60,6 +60,12 @@ export default function AdminLinks() {
             value={config.contato_email}
             onSave={(v) => set('contato', 'email', v)}
             hint="Seu e-mail profissional para contato."
+          />
+          <EditableText
+            label="Telefone / WhatsApp (Exibição)"
+            value={config.contato_telefone}
+            onSave={(v) => set('contato', 'telefone', v)}
+            hint="O número de telefone formatado para exibição. Ex: +55 (62) 99999-9999"
           />
           <EditableText
             label="Cidade / Estado"

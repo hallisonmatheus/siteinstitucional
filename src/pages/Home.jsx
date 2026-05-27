@@ -24,12 +24,14 @@ export default function Home() {
       <Diferenciais />
       <Testimonials />
       <BlogSection config={config} />
-      <FAQSection />
       <ContactSection config={config} />
+      <FAQSection />
       <Footer config={config} />
 
       <a
-        href="#"
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
         title="Falar no WhatsApp"
         style={{ position: 'fixed', bottom: 32, right: 32, background: '#b8966a', color: '#ffffff', width: 60, height: 60, borderRadius: '50%', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 800, boxShadow: '0 10px 25px rgba(184,150,106,0.35)', transition: 'transform 0.3s cubic-bezier(0.23,1,0.32,1), background 0.3s' }}
         onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)'; e.currentTarget.style.background = '#a38459'; }}

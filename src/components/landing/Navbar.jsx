@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { href: '#areas', label: 'Atuação' },
-  { href: '#sobre', label: 'Sobre' },
-  { href: '#diferenciais', label: 'Diferenciais' },
-  { href: '#artigos', label: 'Blog' },
-  { href: '#contato', label: 'Contato' },
+  { href: '/#areas', label: 'Atuação' },
+  { href: '/#sobre', label: 'Sobre' },
+  { href: '/#diferenciais', label: 'Diferenciais' },
+  { href: '/#artigos', label: 'Blog' },
+  { href: '/#contato', label: 'Contato' },
 ];
 
 export default function Navbar({ config = {} }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 15);
@@ -19,7 +22,55 @@ export default function Navbar({ config = {} }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const waLink = '#'; // Links disabled as requested
+  const waLink = '/agendamento';
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    
+    // Extract the hash from href, e.g., "areas"
+    const hash = href.includes('#') ? href.split('#')[1] : '';
+    
+    if (location.pathname === '/') {
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page first, then scroll to element
+      navigate('/');
+      setTimeout(() => {
+        if (hash) {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  };
+
+  const handleCtaClick = (e) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    navigate('/agendamento');
+  };
 
   return (
     <header
@@ -34,7 +85,7 @@ export default function Navbar({ config = {} }) {
     >
       <div className="navbar-container">
         {/* Logo matching Hero logo exactly */}
-        <a href="#inicio" className="hm-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <a href="/" onClick={handleLogoClick} className="hm-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
           <div className="hm-logo-mark">HM</div>
           <span style={{ fontSize: 14, fontWeight: 400, color: '#1A2B4A', letterSpacing: '0.18em', fontFamily: 'Cormorant Garamond, serif', textTransform: 'uppercase' }}>
             Hallison Matheus
@@ -47,6 +98,7 @@ export default function Navbar({ config = {} }) {
             <a 
               key={l.href} 
               href={l.href} 
+              onClick={(e) => handleNavClick(e, l.href)}
               style={{ 
                 fontSize: 10.5, 
                 letterSpacing: '0.22em', 
@@ -68,6 +120,7 @@ export default function Navbar({ config = {} }) {
         {/* CTA */}
         <a
           href={waLink}
+          onClick={handleCtaClick}
           className="hidden-mobile"
           style={{ 
             fontSize: 10, 
@@ -111,12 +164,12 @@ export default function Navbar({ config = {} }) {
           >
             <div style={{ padding: '24px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
               {navLinks.map(l => (
-                <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
+                <a key={l.href} href={l.href} onClick={(e) => handleNavClick(e, l.href)}
                   style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A5A72', textDecoration: 'none', fontFamily: 'Instrument Sans, sans-serif' }}>
                   {l.label}
                 </a>
               ))}
-              <a href={waLink} onClick={() => setMobileOpen(false)}
+              <a href={waLink} onClick={handleCtaClick}
                 style={{ fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#ffffff', background: '#1A2B4A', padding: '12px 24px', textDecoration: 'none', fontWeight: 500, textAlign: 'center', marginTop: 8, fontFamily: 'Instrument Sans, sans-serif' }}>
                 Agendar Consulta
               </a>

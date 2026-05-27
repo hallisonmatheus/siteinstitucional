@@ -11,8 +11,16 @@ const pillars = [
 
 export default function Diferenciais() {
   const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => setCurrent(c => (c + 1) % pillars.length), 5000);
@@ -23,7 +31,7 @@ export default function Diferenciais() {
   const next = (current + 1) % pillars.length;
 
   return (
-    <section id="diferenciais" style={{ padding: '70px 0', background: '#f8f9fa', textAlign: 'center' }}>
+    <section id="diferenciais" style={{ padding: '70px 0', background: '#f8f9fa', textAlign: 'center', overflow: 'hidden' }}>
       <div className="container-legal">
         <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }}>
           <div style={{ fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, fontWeight: 700 }}>
@@ -47,21 +55,27 @@ export default function Diferenciais() {
               const isActive = diff === 0;
               // Circular path calculations
               const angle = diff * (Math.PI / 2.2); // Spacing
-              const x = Math.sin(angle) * 420;
-              const z = Math.cos(angle) * 200 - 200;
-              const isVisible = Math.abs(diff) <= 1.2;
+              
+              // Responsive carousel calculations
+              const cardWidth = isMobile ? 'min(290px, 85vw)' : 340;
+              const x = isMobile ? diff * 310 : Math.sin(angle) * 420;
+              const z = isMobile ? 0 : Math.cos(angle) * 200 - 200;
+              const rotateY = isMobile ? 0 : diff * -25;
+              const scale = isMobile ? (isActive ? 1 : 0.9) : (isActive ? 1.1 : 0.8);
+              const opacity = isMobile ? (isActive ? 1 : 0) : (Math.abs(diff) <= 1.2 ? (isActive ? 1 : 0.4) : 0);
+              const pointerEvents = (isMobile && !isActive) ? 'none' : 'auto';
 
               return (
                 <motion.div
                   key={i}
                   initial={false}
                   animate={{
-                    opacity: isVisible ? (isActive ? 1 : 0.4) : 0,
+                    opacity: opacity,
                     x: x,
                     z: z,
-                    scale: isActive ? 1.1 : 0.8,
-                    zIndex: isActive ? 10 : (isVisible ? 5 : 0),
-                    rotateY: diff * -25,
+                    scale: scale,
+                    zIndex: isActive ? 10 : (Math.abs(diff) <= 1.2 ? 5 : 0),
+                    rotateY: rotateY,
                   }}
                   transition={{
                     type: 'spring',
@@ -71,9 +85,9 @@ export default function Diferenciais() {
                   }}
                   style={{
                     position: 'absolute',
-                    width: 340,
+                    width: cardWidth,
                     minHeight: 320,
-                    padding: '40px 32px',
+                    padding: isMobile ? '32px 24px' : '40px 32px',
                     background: '#334155',
                     border: '1px solid rgba(184,150,106,0.15)',
                     display: 'flex',
@@ -84,7 +98,8 @@ export default function Diferenciais() {
                     cursor: 'pointer',
                     borderRadius: '4px',
                     boxShadow: isActive ? '0 40px 80px rgba(0,0,0,0.4)' : 'none',
-                    backfaceVisibility: 'hidden'
+                    backfaceVisibility: 'hidden',
+                    pointerEvents: pointerEvents
                   }}
                   onClick={() => setCurrent(i)}
                 >

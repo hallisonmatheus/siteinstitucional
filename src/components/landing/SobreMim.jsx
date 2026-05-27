@@ -6,13 +6,24 @@ const skills = ['Direito Civil', 'Direito do Consumidor', 'Direito Trabalhista',
 export default function SobreMim({ config = {} }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
-
   const title = config.sobre_title || 'Comprometimento, estratégia e proximidade em cada caso.';
   const bio1 = config.sobre_text1 || 'Sou Hallison Matheus, advogado com atuação em âmbito nacional, especialmente em Goiânia e Região. Meu trabalho vai muito além de processos: atuo ajudando pessoas e empresas a resolverem problemas com estratégia, segurança jurídica e inteligência, sempre buscando a melhor solução para cada situação.';
   const bio2 = config.sobre_text2 || 'Acredito que ter a orientação jurídica certa faz toda a diferença para evitar prejuízos, proteger direitos e tomar decisões com mais segurança. Por isso, trabalho com prevenção, contratos bem estruturados, compliance e estratégias que visam minimizar os riscos da atividade empresarial, mitigando inclusive riscos e demandas processuais, ou reputacionais.';
   const quote = config.sobre_quote || 'Uma assessoria jurídica moderna não serve apenas para resolver processo quando ele aparece, mas principalmente para trazer segurança, organização, e ajudar empresários e cidadãos a tomarem a melhor decisão, e aquela que oferecerá o menor risco possível';
   const image = config.sobre_image || '/portrait2.jpg';
-  const waLink = config.whatsapp_link || '#';
+  const waLink = config.links_whatsapp || '#';
+
+  const renderTitle = () => {
+    if (title.includes(' estratégia')) {
+      const parts = title.split(' estratégia');
+      return (
+        <>
+          {parts[0]} <span style={{ color: '#162d5d' }}>estratégia{parts[1]}</span>
+        </>
+      );
+    }
+    return title;
+  };
 
   const allSkills = [
     'Direito Civil', 'Direito do Consumidor', 'Direito do Trabalho', 'Direito Contratual',
@@ -67,9 +78,9 @@ export default function SobreMim({ config = {} }) {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div style={{ fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 24, fontWeight: 700 }}>Sobre Mim</div>
+            <div style={{ fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 24, fontweight: 700 }}>Sobre Mim</div>
             <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(26px, 3.2vw, 42px)', fontWeight: 300, lineHeight: 1.1, color: '#1a1a1b', marginBottom: 32 }}>
-              {title.split(' estratégia')[0]} <span style={{ color: '#162d5d' }}>estratégia e proximidade em cada caso.</span>
+              {renderTitle()}
             </h2>
 
             <p style={{ fontSize: 14, color: '#475569', lineHeight: 1.8, marginBottom: 24 }}>{bio1}</p>

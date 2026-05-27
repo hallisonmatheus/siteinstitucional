@@ -1,11 +1,31 @@
 import React from 'react';
 
 export default function Hero({ config = {} }) {
-  const waLink = '#'; // Links disabled as requested
+  const waLink = config.links_whatsapp || '#';
   const tag = config.hero_tag || 'Advocacia Estratégica';
   const subtitle = config.hero_subtitle || 'Atuação personalizada e estratégica com foco em resultados reais e práticos para pessoas e empresas em Goiânia e todo o Brasil.';
   const badge = config.hero_badge || 'Atendimento sigiloso e 100% personalizado';
   const image = config.hero_image || '/portrait1.png';
+
+  const title1 = config.hero_title_1 || 'Soluções jurídicas inteligentes para';
+  let title1_part1 = 'Soluções jurídicas';
+  let title1_part2 = 'inteligentes para';
+  if (title1 !== 'Soluções jurídicas inteligentes para') {
+    const words = title1.split(' ');
+    const mid = Math.ceil(words.length / 2);
+    title1_part1 = words.slice(0, mid).join(' ');
+    title1_part2 = words.slice(mid).join(' ');
+  }
+
+  const title2 = config.hero_title_2 || 'proteger o que realmente importa.';
+  let title2_part1 = 'proteger o que';
+  let title2_part2 = 'realmente importa.';
+  if (title2 !== 'proteger o que realmente importa.') {
+    const words = title2.split(' ');
+    const mid = Math.ceil(words.length / 2);
+    title2_part1 = words.slice(0, mid).join(' ');
+    title2_part2 = words.slice(mid).join(' ');
+  }
 
   return (
     <>
@@ -68,7 +88,7 @@ export default function Hero({ config = {} }) {
         }
 
         .hm-left {
-          padding: 52px 48px 64px 64px;
+          padding: 36px 48px 64px 64px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -120,8 +140,8 @@ export default function Hero({ config = {} }) {
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          padding: 48px 0;
+          justify-content: flex-start;
+          padding: 0;
         }
 
         .hm-eyebrow {
@@ -528,10 +548,10 @@ export default function Hero({ config = {} }) {
               </div>
 
               <h1 className="hm-heading">
-                <span className="hm-heading-normal">Soluções jurídicas</span>
-                <span className="hm-heading-normal">inteligentes para</span>
-                <span className="hm-heading-accent">proteger o que</span>
-                <span className="hm-heading-accent">realmente importa.</span>
+                <span className="hm-heading-normal">{title1_part1}</span>
+                <span className="hm-heading-normal">{title1_part2}</span>
+                <span className="hm-heading-accent">{title2_part1}</span>
+                <span className="hm-heading-accent">{title2_part2}</span>
               </h1>
 
               <div className="hm-divider-row">
@@ -550,7 +570,7 @@ export default function Hero({ config = {} }) {
                   </svg>
                   Falar no Whatsapp
                 </a>
-                <a href="#contato" className="hm-btn-ghost">
+                <a href="/agendamento" className="hm-btn-ghost">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                     <rect x="3" y="4" width="18" height="18" rx="2" />
                     <line x1="16" y1="2" x2="16" y2="6" />

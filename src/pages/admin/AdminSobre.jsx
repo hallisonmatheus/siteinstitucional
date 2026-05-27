@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { PageHeader, SectionCard, EditableText, ImageEditor } from '../../components/admin/FieldEditor';
 import { useSiteConfig } from '../../lib/useSiteConfig';
-import { Image, Quote } from 'lucide-react';
+import { Image } from 'lucide-react';
 
 export default function AdminSobre() {
   const { config, set } = useSiteConfig();

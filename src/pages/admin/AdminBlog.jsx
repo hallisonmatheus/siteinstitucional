@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
-import { PageHeader, ImageEditor } from '../../components/admin/FieldEditor';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
@@ -53,16 +52,6 @@ function PostModal({ post, onClose, onSave }) {
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Resumo (aparece no card)</label>
-            <textarea
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none"
-              rows={2}
-              value={form.excerpt}
-              onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-              placeholder="Uma frase curta que resume o artigo..."
-            />
-          </div>
-          <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Conteúdo completo *</label>
             <textarea
               className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-bronze/50 resize-none leading-relaxed"
@@ -72,12 +61,6 @@ function PostModal({ post, onClose, onSave }) {
               placeholder="Escreva aqui o conteúdo completo do seu artigo..."
             />
           </div>
-          <ImageEditor
-            label="Imagem de capa (opcional)"
-            value={form.image_url}
-            onSave={(url) => setForm({ ...form, image_url: url })}
-            hint="Imagem exibida no card do blog. Recomendado: formato 3:2 (ex: 900x600px)."
-          />
           <div className="flex items-center gap-3">
             <button
               onClick={() => setForm({ ...form, published: !form.published })}
@@ -211,9 +194,6 @@ export default function AdminBlog() {
           <div className="space-y-3">
             {posts.map((post) => (
               <div key={post.id} className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4">
-                {post.image_url && (
-                  <img src={post.image_url} alt={post.title} className="w-20 h-14 object-cover rounded-lg flex-shrink-0" />
-                )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     {post.category && (
@@ -228,9 +208,6 @@ export default function AdminBlog() {
                     </span>
                   </div>
                   <h3 className="text-gray-900 font-semibold text-sm truncate">{post.title}</h3>
-                  {post.excerpt && (
-                    <p className="text-gray-500 text-xs mt-0.5 line-clamp-1">{post.excerpt}</p>
-                  )}
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <button

@@ -6,21 +6,29 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from './pages/Home';
+import BookingPage from './pages/BookingPage';
+import ProtectedRoute from './components/admin/ProtectedRoute';
+
+// Admin Pages
+import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminHero from './pages/admin/AdminHero';
 import AdminSobre from './pages/admin/AdminSobre';
 import AdminLinks from './pages/admin/AdminLinks';
 import AdminBlog from './pages/admin/AdminBlog';
 import AdminFAQ from './pages/admin/AdminFAQ';
-// Add page imports here
+import AdminAppointments from './pages/admin/AdminAppointments';
+import AdminAvailability from './pages/admin/AdminAvailability';
+import AdminGallery from './pages/admin/AdminGallery';
+import AdminSettings from './pages/admin/AdminSettings';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
-  // Show loading spinner while checking app public settings or auth
+  // Show loading spinner while checking auth
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center">
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-50">
         <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
       </div>
     );
@@ -31,30 +39,79 @@ const AuthenticatedApp = () => {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
       navigateToLogin();
       return null;
     }
   }
 
-  // Render the main app
   return (
     <Routes>
+      {/* Public Pages */}
       <Route path="/" element={<Home />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-      <Route path="/admin/hero" element={<AdminHero />} />
-      <Route path="/admin/sobre" element={<AdminSobre />} />
-      <Route path="/admin/links" element={<AdminLinks />} />
-      <Route path="/admin/blog" element={<AdminBlog />} />
-      <Route path="/admin/faq" element={<AdminFAQ />} />
+      <Route path="/agendamento" element={<BookingPage />} />
+      
+      {/* Admin Login */}
+      <Route path="/admin/login" element={<AdminLogin />} />
+      
+      {/* Protected Admin Pages */}
+      <Route path="/admin" element={
+        <ProtectedRoute>
+          <AdminDashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/hero" element={
+        <ProtectedRoute>
+          <AdminHero />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/sobre" element={
+        <ProtectedRoute>
+          <AdminSobre />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/links" element={
+        <ProtectedRoute>
+          <AdminLinks />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/blog" element={
+        <ProtectedRoute>
+          <AdminBlog />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/faq" element={
+        <ProtectedRoute>
+          <AdminFAQ />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/appointments" element={
+        <ProtectedRoute>
+          <AdminAppointments />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/availability" element={
+        <ProtectedRoute>
+          <AdminAvailability />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/gallery" element={
+        <ProtectedRoute>
+          <AdminGallery />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/settings" element={
+        <ProtectedRoute>
+          <AdminSettings />
+        </ProtectedRoute>
+      } />
+      
+      {/* 404 Page */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
 
-
 function App() {
-
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>

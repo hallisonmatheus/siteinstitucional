@@ -21,11 +21,45 @@ export default function ContactSection({ config = {} }) {
     setSending(true);
     
     try {
+      // 1. Save submission to Supabase
       const { error } = await supabase
         .from('contact_submissions')
         .insert([form]);
       
       if (error) throw error;
+
+      // 2. Send notification via EmailJS if configured
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (serviceId && templateId && publicKey && publicKey !== 'INSIRA_SUA_CHAVE_PUBLICA_AQUI') {
+        const cleanPhone = form.whatsapp ? form.whatsapp.replace(/\D/g, '') : '';
+        const whatsappLink = cleanPhone ? `https://wa.me/55${cleanPhone}` : '';
+
+        const emailJsResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: publicKey,
+            template_params: {
+              client_name: form.name,
+              client_email: form.email,
+              client_whatsapp: form.whatsapp || 'Não informado',
+              whatsapp_link: whatsappLink,
+              email_subject: form.subject || 'Contato via Site',
+              email_message: form.message
+            }
+          })
+        });
+
+        if (!emailJsResponse.ok) {
+          const errText = await emailJsResponse.text();
+          console.error('EmailJS error:', errText);
+        }
+      }
       
       toast.success('Mensagem enviada com sucesso!');
       setForm({ name: '', email: '', whatsapp: '', subject: '', message: '' });
@@ -81,7 +115,7 @@ export default function ContactSection({ config = {} }) {
 
           {/* Form */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.15 }}>
-            <div style={{ background: '#f8f9fa', padding: 60, border: '1px solid rgba(0,0,0,0.05)' }}>
+            <div className="contact-form-card" style={{ background: '#f8f9fa', border: '1px solid rgba(0,0,0,0.05)' }}>
               <form onSubmit={handleSubmit}>
                 <div className="form-row-2">
                   <input style={{...inputStyle, background: '#ffffff', color: '#1a1a1b', borderColor: 'rgba(0,0,0,0.1)'}} placeholder="Nome completo *" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} onFocus={e => e.target.style.borderColor = '#162d5d'} onBlur={e => e.target.style.borderColor = 'rgba(0,0,0,0.1)'} />
@@ -119,11 +153,19 @@ export default function ContactSection({ config = {} }) {
           grid-template-columns: 1fr 1fr;
           gap: 24px;
         }
+        .contact-form-card {
+          padding: 60px;
+        }
         @media (max-width: 1024px) {
           .contact-grid-layout { grid-template-columns: 1fr !important; gap: 60px !important; }
         }
         @media (max-width: 768px) {
           .form-row-2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+        }
+        @media (max-width: 640px) {
+          .contact-form-card {
+            padding: 32px 20px !important;
+          }
         }
       `}</style>
     </section>
