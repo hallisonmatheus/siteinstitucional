@@ -646,13 +646,13 @@ export default function BookingPage() {
                     )}
 
                     {/* Warning about payment if fee is 300 */}
-                    {calculatedFee !== 'Gratuita' && calculatedFee !== 'A combinar' && (
-                      <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[11px] p-3 rounded">
+                    {selectedDate && selectedTime && calculatedFee !== 'Gratuita' && calculatedFee !== 'A combinar' && (
+                      <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[11px] p-3 rounded mt-4">
                         <strong>Aviso Importante:</strong> A consulta somente será confirmada e realizada após o envio do comprovante de pagamento da taxa de {calculatedFee}. Nossa equipe entrará em contato com as instruções.
                       </div>
                     )}
-                    {calculatedFee === 'A combinar' && (
-                      <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[11px] p-3 rounded">
+                    {selectedDate && selectedTime && calculatedFee === 'A combinar' && (
+                      <div className="bg-amber-50 border border-amber-200 text-amber-800 text-[11px] p-3 rounded mt-4">
                         <strong>Aviso Importante:</strong> Consultorias presenciais possuem o valor a combinar dependendo do local de atendimento. Entraremos em contato com a proposta antes de confirmar a agenda.
                       </div>
                     )}
