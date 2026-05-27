@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { Tag, Clock, ChevronDown, ChevronUp } from 'lucide-react';
@@ -9,7 +9,16 @@ const PAGE_SIZE = 4;
 
 export default function BlogSection({ config = {} }) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [mobileExpandedIdx, setMobileExpandedIdx] = useState(null);
   const [page, setPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
@@ -78,20 +87,26 @@ export default function BlogSection({ config = {} }) {
             <div style={{ flex: 1 }}>
               {visiblePosts.map((post, i) => {
                 const globalIdx = start + i;
-                const isActive = globalIdx === activeIdx;
+                const isActive = isMobile ? globalIdx === mobileExpandedIdx : globalIdx === activeIdx;
                 return (
                   <React.Fragment key={post.id}>
                     <div
                       onClick={() => {
-                        setActiveIdx(globalIdx);
-                        if (window.innerWidth <= 1024) {
-                          setTimeout(() => {
-                            const activeEl = document.getElementById(`blog-post-${post.id}`);
-                            if (activeEl) {
-                              const y = activeEl.getBoundingClientRect().top + window.pageYOffset - 100;
-                              window.scrollTo({ top: y, behavior: 'smooth' });
-                            }
-                          }, 50);
+                        if (isMobile) {
+                          if (mobileExpandedIdx === globalIdx) {
+                            setMobileExpandedIdx(null);
+                          } else {
+                            setMobileExpandedIdx(globalIdx);
+                            setTimeout(() => {
+                              const activeEl = document.getElementById(`blog-post-${post.id}`);
+                              if (activeEl) {
+                                const y = activeEl.getBoundingClientRect().top + window.pageYOffset - 100;
+                                window.scrollTo({ top: y, behavior: 'smooth' });
+                              }
+                            }, 50);
+                          }
+                        } else {
+                          setActiveIdx(globalIdx);
                         }
                       }}
                       id={`blog-post-${post.id}`}
@@ -108,7 +123,7 @@ export default function BlogSection({ config = {} }) {
                     </div>
                     
                     {/* Mobile Content Accordion */}
-                    {isActive && (
+                    {isMobile && mobileExpandedIdx === globalIdx && (
                       <div className="show-on-mobile hide-on-desktop" style={{ background: '#fcfcfc', padding: '24px 36px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
                         {post.created_date && (
                           <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: '#475569', marginBottom: 20 }}>
