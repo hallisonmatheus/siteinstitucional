@@ -6,14 +6,14 @@ ALTER TABLE public.appointments ADD COLUMN IF NOT EXISTS google_event_id TEXT;
 -- 2. Enable pg_cron extension (required for scheduling tasks natively)
 CREATE EXTENSION IF NOT EXISTS pg_cron;
 
--- 3. Create function to cancel pending appointments older than 5 hours
+-- 3. Create function to cancel pending appointments older than 6 hours
 CREATE OR REPLACE FUNCTION cancel_expired_pending_appointments()
 RETURNS void AS $$
 BEGIN
   UPDATE public.appointments
   SET status = 'Cancelado'
   WHERE status = 'Pendente'
-    AND created_at < NOW() - INTERVAL '5 hours';
+    AND created_at < NOW() - INTERVAL '6 hours';
 END;
 $$ LANGUAGE plpgsql;
 
