@@ -80,20 +80,58 @@ export default function BlogSection({ config = {} }) {
                 const globalIdx = start + i;
                 const isActive = globalIdx === activeIdx;
                 return (
-                  <div
-                    key={post.id}
-                    onClick={() => setActiveIdx(globalIdx)}
-                    style={{ padding: '24px 36px', borderBottom: '1px solid rgba(0,0,0,0.05)', cursor: 'pointer', background: isActive ? 'rgba(100,116,139,0.05)' : 'transparent', borderLeft: isActive ? '2px solid #b8966a' : '2px solid transparent', transition: 'all 0.3s' }}
-                    onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(0,0,0,0.02)'; }}
-                    onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
-                  >
-                    {post.category && (
-                      <div style={{ fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 10, fontWeight: 700 }}>{post.category}</div>
-                    )}
-                    <div style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 18, fontWeight: 400, color: isActive ? '#1a1a1b' : '#475569', lineHeight: 1.35, transition: 'color 0.3s' }}>
-                      {post.title}
+                  <React.Fragment key={post.id}>
+                    <div
+                      onClick={() => {
+                        setActiveIdx(globalIdx);
+                        if (window.innerWidth <= 1024) {
+                          setTimeout(() => {
+                            const activeEl = document.getElementById(`blog-post-${post.id}`);
+                            if (activeEl) {
+                              const y = activeEl.getBoundingClientRect().top + window.pageYOffset - 100;
+                              window.scrollTo({ top: y, behavior: 'smooth' });
+                            }
+                          }, 50);
+                        }
+                      }}
+                      id={`blog-post-${post.id}`}
+                      style={{ padding: '24px 36px', borderBottom: '1px solid rgba(0,0,0,0.05)', cursor: 'pointer', background: isActive ? 'rgba(100,116,139,0.05)' : 'transparent', borderLeft: isActive ? '2px solid #b8966a' : '2px solid transparent', transition: 'all 0.3s' }}
+                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(0,0,0,0.02)'; }}
+                      onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
+                    >
+                      {post.category && (
+                        <div style={{ fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 10, fontWeight: 700 }}>{post.category}</div>
+                      )}
+                      <div style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 18, fontWeight: 400, color: isActive ? '#1a1a1b' : '#475569', lineHeight: 1.35, transition: 'color 0.3s' }}>
+                        {post.title}
+                      </div>
                     </div>
-                  </div>
+                    
+                    {/* Mobile Content Accordion */}
+                    {isActive && (
+                      <div className="show-on-mobile hide-on-desktop" style={{ background: '#fcfcfc', padding: '24px 36px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                        {post.created_date && (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: '#475569', marginBottom: 20 }}>
+                            <Clock size={14} style={{ opacity: 0.6 }} />
+                            {new Date(post.created_date).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                          </div>
+                        )}
+                        <div style={{ fontSize: 14, color: '#475569', lineHeight: 1.8, marginBottom: 24 }}>
+                          {post.content.split('\n').filter(Boolean).map((p, i) => (
+                            <p key={i} style={{ marginBottom: 14 }}>{p}</p>
+                          ))}
+                        </div>
+                        <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+                          <p style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 16, fontStyle: 'italic', color: '#1a1a1b', marginBottom: 16 }}>Quer saber como isso se aplica ao seu caso?</p>
+                          <a href={waLink}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#ffffff', background: '#334155', padding: '12px 24px', textDecoration: 'none' }}
+                          >
+                            Conversar agora
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </React.Fragment>
                 );
               })}
             </div>
@@ -111,7 +149,7 @@ export default function BlogSection({ config = {} }) {
 
           {/* Content */}
           {active && (
-            <div style={{ background: '#ffffff', padding: '50px 60px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }} key={active.id}>
+            <div className="hide-on-mobile" style={{ background: '#ffffff', padding: '50px 60px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }} key={active.id}>
               {active.category && (
                 <div style={{ fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10, fontWeight: 700 }}>
                   <Tag size={14} />
@@ -159,6 +197,11 @@ export default function BlogSection({ config = {} }) {
         @media (max-width: 1024px) {
           .blog-header-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           .blog-main-grid { grid-template-columns: 1fr !important; height: auto !important; }
+          .hide-on-mobile { display: none !important; }
+          .show-on-mobile { display: block !important; }
+        }
+        @media (min-width: 1025px) {
+          .hide-on-desktop { display: none !important; }
         }
       `}</style>
     </section>
