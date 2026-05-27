@@ -31,29 +31,40 @@ export default function Navbar({ config = {} }) {
     // Extract the hash from href, e.g., "areas"
     const hash = href.includes('#') ? href.split('#')[1] : '';
     
-    if (location.pathname === '/') {
-      if (hash) {
-        const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    } else {
-      // Navigate to home page first, then scroll to element
-      navigate('/');
-      setTimeout(() => {
+    // Delay the scroll slightly to allow the mobile menu closing animation to finish
+    // Otherwise, the layout shift interrupts the smooth scroll on mobile devices
+    setTimeout(() => {
+      if (location.pathname === '/') {
         if (hash) {
           const element = document.getElementById(hash);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            // Add a slight offset for the fixed header
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           }
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      }, 100);
-    }
+      } else {
+        // Navigate to home page first, then scroll to element
+        navigate('/');
+        setTimeout(() => {
+          if (hash) {
+            const element = document.getElementById(hash);
+            if (element) {
+              const headerOffset = 80;
+              const elementPosition = element.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    }, 300);
   };
 
   const handleLogoClick = (e) => {
