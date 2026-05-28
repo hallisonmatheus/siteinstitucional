@@ -3,11 +3,13 @@ import AdminLayout from '../../components/admin/AdminLayout';
 import { useAuth } from '@/lib/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
-import { Shield, Lock, Database, Loader2, Check, Key
-} from 'lucide-react';
+import { Shield, Lock, Database, Loader2, Check, Key, Search } from 'lucide-react';
+import { SectionCard, EditableText } from '../../components/admin/FieldEditor';
+import { useSiteConfig } from '../../lib/useSiteConfig';
 
 export default function AdminSettings() {
   const { user } = useAuth();
+  const { config, set } = useSiteConfig();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [updating, setUpdating] = useState(false);
@@ -183,6 +185,34 @@ export default function AdminSettings() {
             </div>
           </form>
         </div>
+
+        {/* SEO Configuration */}
+        <SectionCard 
+          title="Configurações de SEO (Google)" 
+          description="Ajuste como o seu site aparece nos resultados de busca do Google e quando é compartilhado nas redes sociais."
+          icon={Search}
+        >
+          <EditableText
+            label="Título Principal (Meta Title)"
+            value={config.seo_title}
+            onSave={(v) => set('seo', 'title', v)}
+            hint="Este é o título que aparece na aba do navegador e como título principal no Google. Recomenda-se até 60 caracteres."
+          />
+          <EditableText
+            label="Descrição (Meta Description)"
+            value={config.seo_description}
+            onSave={(v) => set('seo', 'description', v)}
+            multiline
+            hint="Um resumo atrativo sobre o seu site que aparece logo abaixo do título nas pesquisas do Google. Recomenda-se entre 150 e 160 caracteres."
+          />
+          <EditableText
+            label="Palavras-chave (Keywords)"
+            value={config.seo_keywords}
+            onSave={(v) => set('seo', 'keywords', v)}
+            multiline
+            hint="Palavras ou frases separadas por vírgula que descrevem seu serviço. Ex: advogado, goiânia, trabalhista."
+          />
+        </SectionCard>
 
       </div>
     </AdminLayout>

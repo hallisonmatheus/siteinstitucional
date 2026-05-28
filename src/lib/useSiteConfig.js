@@ -28,6 +28,10 @@ export const DEFAULTS = {
   contato_oab: 'OAB/GO',
 
   rodape_slogan: 'Estratégia jurídica com foco em resultados, segurança e transparência.',
+
+  seo_title: 'Hallison Matheus · Advogado em Goiânia | Direito Trabalhista e Compliance Empresarial',
+  seo_description: 'Advocacia estratégica e preventiva em Goiânia. Hallison Matheus, advogado especialista em Compliance Trabalhista, Direito do Trabalho, Empresarial e Civil.',
+  seo_keywords: 'advogado Goiânia, advogado trabalhista Goiânia, compliance trabalhista Goiás, advogado empresarial Goiânia',
 };
 
 export function useSiteConfig() {

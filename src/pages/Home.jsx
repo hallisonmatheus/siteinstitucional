@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/landing/Navbar';
 import Hero from '../components/landing/Hero';
 import AreasAtuacao from '../components/landing/AreasAtuacao';
@@ -14,6 +14,28 @@ import { useSiteConfig } from '../lib/useSiteConfig';
 export default function Home() {
   const { config } = useSiteConfig();
   const waLink = config.links_whatsapp || 'https://wa.me/5500000000000';
+
+  useEffect(() => {
+    if (config.seo_title) {
+      document.title = config.seo_title;
+      // Also update og:title
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', config.seo_title);
+    }
+    
+    if (config.seo_description) {
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', config.seo_description);
+      
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', config.seo_description);
+    }
+
+    if (config.seo_keywords) {
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (metaKeywords) metaKeywords.setAttribute('content', config.seo_keywords);
+    }
+  }, [config.seo_title, config.seo_description, config.seo_keywords]);
 
   return (
     <div style={{ background: '#0a0a0b', minHeight: '100vh', color: '#ffffff', fontFamily: 'Inter, sans-serif' }}>
