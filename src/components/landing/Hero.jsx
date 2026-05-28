@@ -500,8 +500,10 @@ export default function Hero({ config = {} }) {
         }
 
         @media (max-width: 768px) {
+          .hm-hero { min-height: auto !important; height: auto !important; padding-top: 80px !important; }
+          .hm-inner { height: auto !important; }
           .hm-right { display: none !important; }
-          .hm-left { border-bottom: none !important; padding: 40px 32px 60px !important; justify-content: center !important; }
+          .hm-left { border-bottom: none !important; padding: 30px 32px 30px !important; justify-content: center !important; }
           .hm-main-content { flex: 0 1 auto !important; }
           .hm-bottom-row { margin-top: 48px !important; }
         }

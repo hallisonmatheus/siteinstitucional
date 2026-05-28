@@ -215,6 +215,9 @@ export default function BlogSection({ config = {} }) {
           .hide-on-mobile { display: none !important; }
           .show-on-mobile { display: block !important; }
         }
+        @media (max-width: 768px) {
+          .blog-header-grid { text-align: center !important; }
+        }
         @media (min-width: 1201px) {
           .hide-on-desktop { display: none !important; }
         }

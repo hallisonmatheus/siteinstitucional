@@ -93,6 +93,9 @@ export default function FAQSection() {
         @media (max-width: 1024px) {
           .faq-header-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
         }
+        @media (max-width: 768px) {
+          .faq-header-grid { text-align: center !important; }
+        }
       `}</style>
     </section>
   );

@@ -83,6 +83,7 @@ export default function ContactSection({ config = {} }) {
             initial={{ opacity: 0, x: -20 }} 
             animate={inView ? { opacity: 1, x: 0 } : {}}
             style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+            className="contact-left-panel"
           >
             <div>
               <div style={{ fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: '#b8966a', marginBottom: 24, fontWeight: 700 }}>Vamos Conversar?</div>
@@ -162,6 +163,7 @@ export default function ContactSection({ config = {} }) {
         }
         @media (max-width: 768px) {
           .form-row-2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .contact-left-panel { text-align: center !important; align-items: center !important; }
         }
         @media (max-width: 640px) {
           .contact-form-card {
