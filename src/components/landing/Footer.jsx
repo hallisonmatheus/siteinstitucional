@@ -129,17 +129,16 @@ export default function Footer({ config = {} }) {
         .footer-container {
           padding: 0 64px;
         }
-        @media (max-width: 1024px) {
-          .footer-grid-layout { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
+        @media (max-width: 1200px) {
+          .footer-grid-layout { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; text-align: center; }
           .footer-container { padding: 0 32px !important; }
+          .footer-brand-flex, .footer-social-flex, .footer-contact-item {
+            justify-content: center !important;
+          }
         }
         @media (max-width: 768px) {
           .footer-grid-layout { 
             grid-template-columns: 1fr !important; 
-            text-align: center; 
-          }
-          .footer-brand-flex, .footer-social-flex, .footer-contact-item {
-            justify-content: center !important;
           }
           .footer-bottom {
             flex-direction: column !important;

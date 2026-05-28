@@ -210,13 +210,10 @@ export default function BlogSection({ config = {} }) {
           margin-bottom: 72px;
         }
         @media (max-width: 1200px) {
-          .blog-header-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .blog-header-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center !important; }
           .blog-main-grid { grid-template-columns: 1fr !important; height: auto !important; }
           .hide-on-mobile { display: none !important; }
           .show-on-mobile { display: block !important; }
-        }
-        @media (max-width: 768px) {
-          .blog-header-grid { text-align: center !important; }
         }
         @media (min-width: 1201px) {
           .hide-on-desktop { display: none !important; }

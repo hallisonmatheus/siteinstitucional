@@ -158,12 +158,12 @@ export default function ContactSection({ config = {} }) {
         .contact-form-card {
           padding: 60px;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .contact-grid-layout { grid-template-columns: 1fr !important; gap: 60px !important; }
+          .contact-left-panel { text-align: center !important; align-items: center !important; }
         }
         @media (max-width: 768px) {
           .form-row-2 { grid-template-columns: 1fr !important; gap: 16px !important; }
-          .contact-left-panel { text-align: center !important; align-items: center !important; }
         }
         @media (max-width: 640px) {
           .contact-form-card {

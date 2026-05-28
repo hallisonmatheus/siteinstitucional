@@ -43,7 +43,7 @@ export default function AreasAtuacao() {
   const headerInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="areas" style={{ padding: '35px 0 75px', background: '#f8f9fa', overflow: 'hidden' }}>
+    <section id="areas" style={{ padding: '45px 0', background: '#f8f9fa', overflow: 'hidden' }}>
       <div className="container-legal">
         <motion.div
           ref={headerRef}
@@ -109,7 +109,7 @@ export default function AreasAtuacao() {
         </div>
 
         {/* Mobile fallback - grid */}
-        <div className="radial-mobile" style={{ display: 'none', flexDirection: 'column', gap: 32, maxWidth: 500, margin: '0 auto' }}>
+        <div className="radial-mobile" style={{ display: 'none', flexDirection: 'column', gap: 24, maxWidth: 500, margin: '0 auto' }}>
           {areas.map((area, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <h3 style={{ fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#1a1a1b', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 10 }}>
