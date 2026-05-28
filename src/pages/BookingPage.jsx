@@ -378,7 +378,7 @@ export default function BookingPage() {
               </div>
 
               {/* Main Container Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 
                 {/* Left Column: Interactive Calendar and Hour slots */}
                 <div className="booking-card p-6 space-y-6">
