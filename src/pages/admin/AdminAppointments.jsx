@@ -63,7 +63,7 @@ export default function AdminAppointments() {
     mutationFn: async ({ id, date, time }) => {
       const { data, error } = await supabase
         .from('appointments')
-        .update({ date, time })
+        .update({ date, time, status: 'Confirmado' })
         .eq('id', id)
         .select()
         .single();
@@ -72,7 +72,7 @@ export default function AdminAppointments() {
     },
     onSuccess: (data) => {
       qc.invalidateQueries({ queryKey: ['adminAppointments'] });
-      toast.success('Agendamento reagendado com sucesso!');
+      toast.success('Agendamento reagendado e confirmado com sucesso!');
       setIsEditingTime(false);
       if (selectedAppt && selectedAppt.id === data.id) {
         setSelectedAppt(data);
