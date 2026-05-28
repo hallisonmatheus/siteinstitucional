@@ -501,7 +501,9 @@ export default function Hero({ config = {} }) {
 
         @media (max-width: 768px) {
           .hm-right { display: none !important; }
-          .hm-left { border-bottom: none !important; padding: 40px 32px 60px !important; }
+          .hm-left { border-bottom: none !important; padding: 40px 32px 60px !important; justify-content: center !important; }
+          .hm-main-content { flex: 0 1 auto !important; }
+          .hm-bottom-row { margin-top: 48px !important; }
         }
 
         @media (max-width: 576px) {
