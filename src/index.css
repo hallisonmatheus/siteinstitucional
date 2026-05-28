@@ -42,18 +42,10 @@
 }
 
 .container-legal {
-  width: 100%;
-  max-width: 1200px; /* Limit absolute width for ultra-wide screens */
-  width: 70vw;
+  width: 90vw;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media (max-width: 1024px) {
-  .container-legal {
-    width: 90vw;
-    max-width: none;
-  }
 }
 
 ::selection {
