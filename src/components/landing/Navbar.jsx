@@ -221,11 +221,11 @@ export default function Navbar({ config = {} }) {
           color: #B8A068;
           font-family: 'Cormorant Garamond', serif;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
         }
-        @media (min-width: 769px) {
+        @media (min-width: 1001px) {
           .show-mobile { display: none !important; }
           .hidden-mobile { display: flex; }
         }
