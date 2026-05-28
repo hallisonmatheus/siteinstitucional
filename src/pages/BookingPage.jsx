@@ -265,10 +265,17 @@ export default function BookingPage() {
       
     // Return all template slots with their booking status
     return templates
-      .map(time => ({
-        time,
-        isBooked: bookings.includes(time) || blockedTimesForDate.includes(time)
-      }))
+      .map(time => {
+        const [hours, minutes] = time.split(':').map(Number);
+        const slotDate = new Date(selectedDate);
+        slotDate.setHours(hours, minutes, 0, 0);
+        const isPast = slotDate < new Date();
+
+        return {
+          time,
+          isBooked: bookings.includes(time) || blockedTimesForDate.includes(time) || isPast
+        };
+      })
       .sort((a, b) => a.time.localeCompare(b.time));
   };
 

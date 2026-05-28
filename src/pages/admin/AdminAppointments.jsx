@@ -102,6 +102,12 @@ export default function AdminAppointments() {
     }
   });
 
+  const isAppointmentPast = (appt) => {
+    if (!appt || !appt.date || !appt.time) return false;
+    const apptDateTime = new Date(`${appt.date}T${appt.time}`);
+    return apptDateTime < new Date();
+  };
+
   // Filters calculation
   const getFilteredAppointments = () => {
     const today = new Date();
@@ -462,7 +468,7 @@ export default function AdminAppointments() {
                     </button>
                   )}
 
-                  {selectedAppt.status === 'Confirmado' && (
+                  {selectedAppt.status === 'Confirmado' && isAppointmentPast(selectedAppt) && (
                     <button
                       onClick={() => statusMutation.mutate({ id: selectedAppt.id, status: 'Concluído' })}
                       className="flex items-center gap-1.5 px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors"
