@@ -48,7 +48,7 @@ export default function SobreMim({ config = {} }) {
                 <img
                   src={image}
                   alt="Hallison Matheus"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(0.1) contrast(1.05)' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block', filter: 'grayscale(0.1) contrast(1.05)' }}
                 />
               </div>
               <div className="oab-badge" style={{ 

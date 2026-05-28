@@ -559,7 +559,7 @@ export default function BookingPage() {
                     </div>
 
                     {/* Modality & Client Type */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-1.5">
                         <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-widest">Modalidade *</label>
                         <select
@@ -585,7 +585,7 @@ export default function BookingPage() {
                     </div>
 
                     {/* Area & Has Lawyer */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-1.5">
                         <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-widest">Área da Consulta *</label>
                         <select

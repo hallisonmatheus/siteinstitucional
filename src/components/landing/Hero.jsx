@@ -487,11 +487,14 @@ export default function Hero({ config = {} }) {
           50% { opacity: 1; transform: scaleY(1.15); }
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 1024px) {
           .hm-hero { height: auto !important; min-height: 100vh !important; }
           .hm-inner { grid-template-columns: 1fr !important; min-height: auto !important; }
-          .hm-right { height: 480px !important; }
-          .hm-left { padding: 60px 32px 40px !important; border-right: none !important; border-bottom: 1px solid rgba(15,30,60,0.10) !important; }
+          .hm-right { height: 500px !important; }
+          .hm-left { padding: 40px 48px 60px !important; border-right: none !important; border-bottom: 1px solid rgba(15,30,60,0.10) !important; }
+          .hm-portrait-wrapper { top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; }
+          .hm-portrait { top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; object-position: center 15% !important; }
+          .hm-image-gradient { top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; }
           .hm-spec-tags { display: none !important; }
           .hm-scroll-hint { display: none !important; }
         }

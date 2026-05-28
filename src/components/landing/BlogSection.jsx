@@ -14,7 +14,7 @@ export default function BlogSection({ config = {} }) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1200);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -92,7 +92,7 @@ export default function BlogSection({ config = {} }) {
                   <React.Fragment key={post.id}>
                     <div
                       onClick={() => {
-                        if (isMobile) {
+                        if (window.innerWidth <= 1200) {
                           if (mobileExpandedIdx === globalIdx) {
                             setMobileExpandedIdx(null);
                           } else {
@@ -209,13 +209,13 @@ export default function BlogSection({ config = {} }) {
           align-items: end;
           margin-bottom: 72px;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .blog-header-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           .blog-main-grid { grid-template-columns: 1fr !important; height: auto !important; }
           .hide-on-mobile { display: none !important; }
           .show-on-mobile { display: block !important; }
         }
-        @media (min-width: 1025px) {
+        @media (min-width: 1201px) {
           .hide-on-desktop { display: none !important; }
         }
       `}</style>

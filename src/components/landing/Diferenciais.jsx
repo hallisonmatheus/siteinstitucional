@@ -57,7 +57,7 @@ export default function Diferenciais() {
               const angle = diff * (Math.PI / 2.2); // Spacing
               
               // Responsive carousel calculations
-              const cardWidth = isMobile ? 'min(290px, 85vw)' : 340;
+              const cardWidth = isMobile ? 'min(320px, 85vw)' : 420;
               const x = isMobile ? diff * 310 : Math.sin(angle) * 420;
               const z = isMobile ? 0 : Math.cos(angle) * 200 - 200;
               const rotateY = isMobile ? 0 : diff * -25;
