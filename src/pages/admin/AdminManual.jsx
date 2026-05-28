@@ -78,8 +78,8 @@ export default function AdminManual() {
                 <p className="text-sm">A aba <em>Disponibilidade</em> permite que você defina quais horários de atendimento aparecem disponíveis no formulário de agendamento do site.</p>
               </div>
               <div className="border border-slate-100 rounded-lg p-5">
-                <h4 className="font-semibold text-slate-800 mb-2">Configurações (SEO)</h4>
-                <p className="text-sm">Configure o título principal do site, a descrição que aparece no Google e as palavras-chave que ajudam seu site a ser encontrado.</p>
+                <h4 className="font-semibold text-slate-800 mb-2">Configurações</h4>
+                <p className="text-sm">Aba dedicada à segurança do seu acesso administrativo. Permite que você visualize o nível de acesso e altere sua senha do Painel de Controle a qualquer momento.</p>
               </div>
             </div>
             
