@@ -6,7 +6,6 @@ import { useSiteConfig } from '../lib/useSiteConfig';
 import Navbar from '../components/landing/Navbar';
 import Footer from '../components/landing/Footer';
 import { toast } from 'sonner';
-import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Calendar as CalendarIcon, Clock, ChevronLeft, ChevronRight, 
@@ -118,11 +117,6 @@ export default function BookingPage() {
     },
     onSuccess: (data) => {
       setSubmittedAppt(data);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
       toast.success('Consulta agendada com sucesso!');
     },
     onError: (err) => {
