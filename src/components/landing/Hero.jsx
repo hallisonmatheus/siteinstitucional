@@ -499,6 +499,11 @@ export default function Hero({ config = {} }) {
           .hm-scroll-hint { display: none !important; }
         }
 
+        @media (max-width: 768px) {
+          .hm-right { display: none !important; }
+          .hm-left { border-bottom: none !important; padding: 40px 32px 60px !important; }
+        }
+
         @media (max-width: 576px) {
           .hm-top-row {
             flex-direction: column !important;
