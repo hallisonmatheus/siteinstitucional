@@ -128,7 +128,7 @@ export default function AdminSettings() {
         </div>
 
         {/* Change Password Form */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm max-w-2xl">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center gap-2 border-b border-gray-100 pb-4 mb-5">
             <Lock className="w-4 h-4 text-[#B8A068]" />
             <h3 className="font-bold text-gray-900 text-base">Alterar Senha</h3>
