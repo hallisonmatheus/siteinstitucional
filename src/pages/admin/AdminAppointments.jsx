@@ -172,10 +172,25 @@ export default function AdminAppointments() {
       toast.error('Selecione data e hora válidas.');
       return;
     }
+
+    // Prevent clashing with existing active appointments
+    const timeFormatted = editTime.length === 5 ? `${editTime}:00` : editTime;
+    const isConflict = appointments.some(appt => 
+      appt.id !== selectedAppt.id && 
+      appt.status !== 'Cancelado' &&
+      appt.date === editDate &&
+      appt.time.substring(0, 5) === editTime.substring(0, 5)
+    );
+
+    if (isConflict) {
+      toast.error('Este horário já está ocupado por outra consulta ativa.');
+      return;
+    }
+
     rescheduleMutation.mutate({ 
       id: selectedAppt.id, 
       date: editDate, 
-      time: `${editTime}:00` 
+      time: timeFormatted 
     });
   };
 
