@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import {
   LayoutDashboard, Image, FileText, HelpCircle, Link as LinkIcon,
-  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut, BookOpen
+  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut, BookOpen, Menu
 } from 'lucide-react';
 
 const mainMenuItems = [
@@ -24,6 +24,7 @@ const contentMenuItems = [
 ];
 
 export default function AdminLayout({ children }) {
+  const [isSidebarOpen, setSidebarOpen] = React.useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -45,8 +46,16 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
+      {/* Overlay for mobile sidebar */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-30 min-[900px]:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-[#1a2b4a] border-r border-[#1a2b4a] flex flex-col fixed top-0 bottom-0 left-0 z-40 shadow-xl">
+      <aside className={`w-64 bg-[#1a2b4a] border-r border-[#1a2b4a] flex flex-col fixed top-0 bottom-0 left-0 z-40 shadow-xl transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : 'max-[900px]:-translate-x-full'} min-[900px]:translate-x-0`}>
         {/* Logo */}
         <div className="p-6 border-b border-[#253965]">
           <div className="flex items-center gap-3">
@@ -71,6 +80,7 @@ export default function AdminLayout({ children }) {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                     active
                       ? 'bg-[#253965] text-white font-medium shadow-sm'
@@ -94,6 +104,7 @@ export default function AdminLayout({ children }) {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => setSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-colors ${
                     active
                       ? 'bg-[#253965] text-white font-medium'
@@ -141,7 +152,14 @@ export default function AdminLayout({ children }) {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 min-h-screen">
+      <main className="flex-1 min-[900px]:ml-64 max-[900px]:ml-0 min-h-screen transition-all duration-300">
+        {/* Mobile Header */}
+        <div className="min-[900px]:hidden flex items-center p-4 bg-white border-b border-gray-200">
+          <button onClick={() => setSidebarOpen(true)} className="p-2 text-gray-600 rounded-md hover:bg-gray-100">
+            <Menu className="w-6 h-6" />
+          </button>
+          <span className="ml-4 font-bold text-gray-800">Painel Admin</span>
+        </div>
         {children}
       </main>
     </div>
