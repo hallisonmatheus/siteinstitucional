@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import {
   LayoutDashboard, Image, FileText, HelpCircle, Link as LinkIcon,
-  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut
+  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut, BookOpen
 } from 'lucide-react';
 
 const mainMenuItems = [
@@ -12,6 +12,7 @@ const mainMenuItems = [
   { icon: Clock, label: 'Horários Disponíveis', path: '/admin/availability' },
   { icon: Image, label: 'Galeria/Imagens', path: '/admin/gallery' },
   { icon: Settings, label: 'Configurações', path: '/admin/settings' },
+  { icon: BookOpen, label: 'Manual do Sistema', path: '/admin/manual' },
 ];
 
 const contentMenuItems = [

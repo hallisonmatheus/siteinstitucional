@@ -32,6 +32,7 @@ import AdminAppointments from './pages/admin/AdminAppointments';
 import AdminAvailability from './pages/admin/AdminAvailability';
 import AdminGallery from './pages/admin/AdminGallery';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminManual from './pages/admin/AdminManual';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -113,6 +114,11 @@ const AuthenticatedApp = () => {
       <Route path="/admin/settings" element={
         <ProtectedRoute>
           <AdminSettings />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/manual" element={
+        <ProtectedRoute>
+          <AdminManual />
         </ProtectedRoute>
       } />
       
