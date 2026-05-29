@@ -123,6 +123,10 @@ export default function AdminManual() {
                 <span className="bg-blue-100 text-blue-700 p-1.5 rounded text-xs font-bold w-24 text-center shrink-0">CONCLUIR</span>
                 <p>Use este botão após realizar o atendimento com o cliente. Ele marca o agendamento como finalizado, ajudando a manter o histórico organizado no painel.</p>
               </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-slate-100 text-slate-700 p-1.5 rounded text-xs font-bold w-24 text-center shrink-0">EXCLUIR</span>
+                <p>Use este botão para apagar permanentemente o registro. <strong>Atenção:</strong> Isso elimina o agendamento do painel e do banco de dados definitivamente.</p>
+              </li>
             </ul>
 
             <h3 className="text-lg font-semibold text-slate-800 border-b pb-2 mt-8">Modo Férias e Horários de Atendimento</h3>
