@@ -8,7 +8,8 @@ import {
   AlertTriangle,
   Globe,
   ExternalLink,
-  Users
+  Users,
+  Calendar
 } from 'lucide-react';
 
 export default function AdminManual() {
@@ -90,7 +91,57 @@ export default function AdminManual() {
           </div>
         </section>
 
-        {/* 3. Contas e Infraestrutura */}
+        {/* 3. Gerenciamento de Agendamentos e Disponibilidade */}
+        <section className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="border-b border-slate-100 bg-slate-50 p-6 flex items-center gap-3">
+            <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
+              <Calendar className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-semibold text-slate-800">Gerenciamento de Agendamentos e Disponibilidade</h2>
+          </div>
+          <div className="p-6 text-slate-600 space-y-6 leading-relaxed">
+            
+            <h3 className="text-lg font-semibold text-slate-800 border-b pb-2">Como Gerenciar Agendamentos</h3>
+            <p>A aba <strong>Agendamentos</strong> é onde você controla todas as solicitações recebidas pelo site.</p>
+            
+            <div className="my-4 border border-dashed border-slate-300 rounded-lg bg-slate-50 p-2 text-center text-slate-400">
+              <img src="/tutorial-agendamentos.png" alt="Tela de Agendamentos" className="w-full h-auto rounded shadow-sm object-cover" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              <span className="hidden py-10">Adicione uma imagem 'tutorial-agendamentos.png' na pasta public para exibir neste local.</span>
+            </div>
+
+            <p>Para cada agendamento, você tem os seguintes botões de ação:</p>
+            <ul className="list-none space-y-3 mt-2 mb-6">
+              <li className="flex items-start gap-3">
+                <span className="bg-green-100 text-green-700 p-1.5 rounded text-xs font-bold w-24 text-center shrink-0">CONFIRMAR</span>
+                <p>Ao confirmar, o sistema <strong>automaticamente</strong> marca o evento no seu Google Calendar e dispara um e-mail para o cliente avisando que a consulta está confirmada para a data e hora escolhidas.</p>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-red-100 text-red-700 p-1.5 rounded text-xs font-bold w-24 text-center shrink-0">CANCELAR</span>
+                <p>Ao cancelar, a consulta muda de status, é <strong>removida do seu Google Calendar</strong> (se já estiver lá) e um e-mail de cancelamento é enviado ao cliente.</p>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 p-1.5 rounded text-xs font-bold w-24 text-center shrink-0">CONCLUIR</span>
+                <p>Use este botão após realizar o atendimento com o cliente. Ele marca o agendamento como finalizado, ajudando a manter o histórico organizado no painel.</p>
+              </li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-slate-800 border-b pb-2 mt-8">Modo Férias e Horários de Atendimento</h3>
+            <p>Na aba <strong>Disponibilidade</strong>, você tem controle total sobre quando os clientes podem agendar consultas.</p>
+
+            <div className="my-4 border border-dashed border-slate-300 rounded-lg bg-slate-50 p-2 text-center text-slate-400">
+              <img src="/tutorial-disponibilidade.png" alt="Tela de Disponibilidade" className="w-full h-auto rounded shadow-sm object-cover" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              <span className="hidden py-10">Adicione uma imagem 'tutorial-disponibilidade.png' na pasta public para exibir neste local.</span>
+            </div>
+
+            <ul className="list-disc pl-5 space-y-3 mt-2">
+              <li><strong>Modo Férias:</strong> Se precisar pausar os atendimentos por um período, basta ativar a chave "Modo Férias". O formulário do site não aceitará novos agendamentos até você desativá-lo.</li>
+              <li><strong>Dias e Horários de Funcionamento:</strong> Selecione os dias da semana em que você atende, defina o horário de início, o horário de término e o intervalo (duração) de cada consulta. O site usará essa configuração para gerar os horários disponíveis para o cliente automaticamente.</li>
+            </ul>
+
+          </div>
+        </section>
+
+        {/* 4. Contas e Infraestrutura */}
         <section className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="border-b border-slate-100 bg-slate-50 p-6 flex items-center gap-3">
             <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
@@ -188,7 +239,7 @@ export default function AdminManual() {
           </div>
         </section>
 
-        {/* 4. Segurança do Painel de Controle */}
+        {/* 5. Segurança do Painel de Controle */}
         <section className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="border-b border-slate-100 bg-slate-50 p-6 flex items-center gap-3">
             <div className="p-2 bg-rose-100 text-rose-600 rounded-lg">
