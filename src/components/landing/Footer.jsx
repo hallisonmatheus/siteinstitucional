@@ -41,10 +41,10 @@ export default function Footer({ config = {} }) {
         <div className="footer-grid-layout" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: 60, marginBottom: 80 }}>
           {/* Brand */}
           <div>
-            <div className="footer-brand-flex" style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-              <span style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 24, fontWeight: 400, color: '#162d5d', letterSpacing: '0.05em' }}>HM</span>
-              <span style={{ width: 1, height: 22, background: '#b8966a', display: 'block' }} />
-              <span style={{ fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#162d5d', fontFamily: 'Inter, sans-serif', fontWeight: 600, lineHeight: 1.4 }}>
+            <div className="footer-brand-flex" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+              <img src="/logo-light.jpeg" alt="HM Logo" style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '4px' }} />
+              <span style={{ width: 1, height: 32, background: '#b8966a', display: 'block' }} />
+              <span style={{ fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#162d5d', fontFamily: 'Inter, sans-serif', fontWeight: 600, lineHeight: 1.4 }}>
                 Hallison Matheus<br />Advocacia
               </span>
             </div>

@@ -97,7 +97,7 @@ export default function Navbar({ config = {} }) {
       <div className="navbar-container">
         {/* Logo matching Hero logo exactly */}
         <a href="/" onClick={handleLogoClick} className="hm-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="hm-logo-mark">HM</div>
+          <img src="/logo-dark.jpeg" alt="HM Logo" style={{ width: '40px', height: '40px', objectFit: 'contain', borderRadius: '4px' }} />
           <span style={{ fontSize: 14, fontWeight: 400, color: '#1A2B4A', letterSpacing: '0.18em', fontFamily: 'Cormorant Garamond, serif', textTransform: 'uppercase' }}>
             Hallison Matheus
           </span>
@@ -207,19 +207,6 @@ export default function Navbar({ config = {} }) {
           .navbar-container {
             padding: 0 16px !important;
           }
-        }
-        .hm-logo-mark {
-          width: 34px;
-          height: 34px;
-          background: #1A2B4A;
-          border: 1px solid rgba(26,43,74,0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-weight: 600;
-          color: #B8A068;
-          font-family: 'Cormorant Garamond', serif;
         }
         @media (max-width: 1000px) {
           .hidden-mobile { display: none !important; }
