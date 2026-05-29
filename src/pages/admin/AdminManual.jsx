@@ -24,10 +24,10 @@ export default function AdminManual() {
               <h3 className="text-lg font-semibold text-amber-900 mb-2">Aviso Importante: Segurança e Suporte</h3>
               <p className="text-amber-800 mb-4 leading-relaxed">
                 As senhas provisórias foram configuradas para facilitar a entrega e o período inicial de suporte técnico. 
-                <strong> O suporte técnico de 30 dias se encerra em 27/06/2026.</strong>
+                <strong> O suporte técnico de 30 dias se encerra em 28/06/2026.</strong>
               </p>
               <div className="bg-amber-100/50 p-4 rounded-md text-amber-900 text-sm">
-                <p className="font-medium mb-1">Ação Necessária até 27/06/2026:</p>
+                <p className="font-medium mb-1">Ação Necessária até 28/06/2026:</p>
                 <p>Altere a senha de <strong>todas</strong> as contas listadas abaixo, bem como a senha de acesso a este Painel de Controle, para garantir a segurança definitiva dos seus dados e infraestrutura.</p>
               </div>
             </div>
