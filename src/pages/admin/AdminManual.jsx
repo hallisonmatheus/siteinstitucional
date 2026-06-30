@@ -1,7 +1,6 @@
 import React from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { 
-  BookOpen, 
   Settings, 
   Link as LinkIcon, 
   ShieldCheck, 

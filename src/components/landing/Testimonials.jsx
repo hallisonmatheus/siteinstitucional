@@ -1,15 +1,30 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-
-const testimonials = [
-  { initials: 'CM', name: 'Carla Mendes', role: 'Causa trabalhista · Goiânia', text: 'Profissional excepcional. Explicou tudo de forma clara, me deixou seguro durante todo o processo e conseguiu um resultado que eu nem esperava. Recomendo muito.' },
-  { initials: 'RS', name: 'Rafael Souza', role: 'Compliance Empresarial · Goiás', text: 'Atendimento muito diferente do que eu estava acostumado. Respostas rápidas, total transparência e um advogado que de fato se importa com o cliente.' },
-  { initials: 'JM', name: 'Juliana Martins', role: 'Direito civil · Goiânia', text: 'Resolveu uma situação que eu achei que nunca teria solução. Competência técnica aliada a uma comunicação humana e acessível. Excelente profissional.' },
-];
+import { useSiteConfig } from '../../lib/useSiteConfig';
 
 export default function Testimonials() {
+  const { config } = useSiteConfig();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
+
+  // Get active testimonials dynamically
+  const activeTestimonials = [];
+  for (let i = 1; i <= 3; i++) {
+    const active = config[`testimonial_${i}_active`] !== 'false';
+    const text = config[`testimonial_${i}_text`]?.trim();
+    if (active && text) {
+      const name = config[`testimonial_${i}_name`]?.trim() || '';
+      const initials = config[`testimonial_${i}_initials`]?.trim() || (name ? name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : '');
+      const role = config[`testimonial_${i}_role`]?.trim() || '';
+      activeTestimonials.push({ initials, name, role, text });
+    }
+  }
+
+  if (activeTestimonials.length === 0) {
+    return null;
+  }
+
+  const activeCount = activeTestimonials.length;
 
   return (
     <section style={{ padding: '45px 0', background: '#f1f5f9', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
@@ -27,7 +42,7 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="test-grid-layout">
-          {testimonials.map((t, i) => (
+          {activeTestimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -56,11 +71,16 @@ export default function Testimonials() {
       <style>{`
         .test-grid-layout {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(${activeCount}, 1fr);
           gap: 32px;
+          max-width: ${activeCount === 2 ? '800px' : activeCount === 1 ? '450px' : '1200px'};
+          margin: 0 auto;
         }
         @media (max-width: 1024px) {
-          .test-grid-layout { grid-template-columns: 1fr !important; }
+          .test-grid-layout { 
+            grid-template-columns: 1fr !important; 
+            max-width: 500px !important;
+          }
         }
       `}</style>
     </section>

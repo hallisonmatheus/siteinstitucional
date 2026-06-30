@@ -32,6 +32,24 @@ export const DEFAULTS = {
   seo_title: 'Hallison Matheus · Advogado em Goiânia | Direito Trabalhista e Compliance Empresarial',
   seo_description: 'Advocacia estratégica e preventiva em Goiânia. Hallison Matheus, advogado especialista em Compliance Trabalhista, Direito do Trabalho, Empresarial e Civil.',
   seo_keywords: 'advogado Goiânia, advogado trabalhista Goiânia, compliance trabalhista Goiás, advogado empresarial Goiânia',
+
+  testimonial_1_active: 'true',
+  testimonial_1_initials: 'MC',
+  testimonial_1_name: 'Milena Chagas',
+  testimonial_1_role: 'Cliente',
+  testimonial_1_text: 'Matheus é um profissional muito competente, atencioso e comprometido. Sempre me passou as informações com muita clareza durante todo o processo!',
+
+  testimonial_2_active: 'true',
+  testimonial_2_initials: 'MA',
+  testimonial_2_name: 'Mayeda Alves',
+  testimonial_2_role: 'Cliente',
+  testimonial_2_text: 'Parceria tranquila e confiável desde 2022. Advogado acessível, focado em resultados e de total confiança. Sempre pronto pra acalmar nossas angústias.',
+
+  testimonial_3_active: 'false',
+  testimonial_3_initials: 'JM',
+  testimonial_3_name: 'Juliana Martins',
+  testimonial_3_role: 'Direito civil · Goiânia',
+  testimonial_3_text: 'Resolveu uma situação que eu achei que nunca teria solução. Competência técnica aliada a uma comunicação humana e acessível. Excelente profissional.',
 };
 
 export function useSiteConfig() {

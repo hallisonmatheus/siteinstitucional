@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import {
   LayoutDashboard, Image, FileText, HelpCircle, Link as LinkIcon,
-  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut, BookOpen, Menu
+  ExternalLink, ChevronRight, User, Calendar, Clock, Settings, LogOut, BookOpen, Menu, MessageSquare
 } from 'lucide-react';
 
 const mainMenuItems = [
@@ -18,6 +18,7 @@ const mainMenuItems = [
 const contentMenuItems = [
   { icon: Image, label: 'Hero (Topo)', path: '/admin/hero' },
   { icon: User, label: 'Sobre Mim', path: '/admin/sobre' },
+  { icon: MessageSquare, label: 'Depoimentos', path: '/admin/testimonials' },
   { icon: LinkIcon, label: 'Links e Contato', path: '/admin/links' },
   { icon: FileText, label: 'Artigos do Blog', path: '/admin/blog' },
   { icon: HelpCircle, label: 'Perguntas Frequentes', path: '/admin/faq' },
