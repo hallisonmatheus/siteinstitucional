@@ -132,7 +132,7 @@ export default function BlogSection({ config = {} }) {
                           </div>
                         )}
                         <div style={{ fontSize: 14, color: '#475569', lineHeight: 1.8, marginBottom: 24 }}>
-                          {post.content.split('\n').filter(Boolean).map((p, i) => (
+                          {(post.content || '').replace(/\\n/g, '\n').split('\n').filter(Boolean).map((p, i) => (
                             <p key={i} style={{ marginBottom: 14 }}>{p}</p>
                           ))}
                         </div>
@@ -182,7 +182,7 @@ export default function BlogSection({ config = {} }) {
               )}
               <div style={{ width: '100%', height: 1, background: 'rgba(0,0,0,0.05)', marginBottom: 40 }} />
               <div style={{ fontSize: 15, color: '#475569', lineHeight: 1.85, flex: 1, overflowY: 'auto', paddingRight: 24, marginBottom: 20 }}>
-                {active.content.split('\n').filter(Boolean).map((p, i) => (
+                {(active.content || '').replace(/\\n/g, '\n').split('\n').filter(Boolean).map((p, i) => (
                   <p key={i} style={{ marginBottom: 18 }}>{p}</p>
                 ))}
               </div>

@@ -9,7 +9,13 @@ import { MOCK_BLOG_POSTS } from '@/api/mockData';
 const EMPTY_POST = { title: '', category: '', excerpt: '', content: '', image_url: '', published: true };
 
 function PostModal({ post, onClose, onSave }) {
-  const [form, setForm] = useState(post || EMPTY_POST);
+  const [form, setForm] = useState(() => {
+    if (!post) return EMPTY_POST;
+    return {
+      ...post,
+      content: (post.content || '').replace(/\\n/g, '\n')
+    };
+  });
   const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {
